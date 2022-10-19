@@ -35,13 +35,25 @@
             android:orientation="vertical">
 
             <ImageButton
+                android:id="@+id/btn_frutilla"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/fresas" />
+
+            <ImageButton
+                android:id="@+id/btn_mora"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/frambuesas" />
+
+            <ImageButton
                 android:id="@+id/btn_cerezas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/cerezas" />
 
             <ImageButton
-                android:id="@+id/imageButton3"
+                android:id="@+id/btn_bananas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/bananas" />

@@ -15,8 +15,7 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        //COMPLETAR EL QUERY PARA CREAR LA TABLA DE PRODUCTOS
-//        sqLiteDatabase.execSQL();
+        sqLiteDatabase.execSQL("create table products (code int primary key, name text)");
     }
 
     @Override

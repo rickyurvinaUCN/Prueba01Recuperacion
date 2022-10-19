@@ -1,5 +1,6 @@
 package com.example.prueba01recuperacion;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,8 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.prueba01recuperacion.databinding.FragmentFirstBinding;
 
+import java.lang.reflect.Array;
+
 public class FirstFragment extends Fragment {
 
     private FragmentFirstBinding binding;
@@ -28,11 +31,17 @@ public class FirstFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         binding = FragmentFirstBinding.inflate(inflater, container, false);
-        scr_1=(ScrollView) binding.scr1;
+        scr_1 = (ScrollView) binding.scr1;
+        sp_1 = (Spinner) binding.sp1;
 
-//        String [] names={};
-//        ArrayAdapter<String> adapter = new ArrayAdapter<>();
-//        name_spinner.setAdapter(adapter);
+        String[] names =
+                {
+                        "Ricardo",
+                        "Ingrid",
+                        "Menthor"
+                };
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, names);
+        sp_1.setAdapter(adapter);
         return binding.getRoot();
     }
 
@@ -51,23 +60,54 @@ public class FirstFragment extends Fragment {
         binding.btnCerezas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Completar lógica de ScrollView, ojo no necesariamente se aplica toda la lógica en este boton.
+                Toast.makeText(getContext(), "Cerezas seleccionadas", Toast.LENGTH_SHORT).show();
             }
         });
+        binding.btnMora.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "Moras seleccionadas", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.btnFrutilla.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "Frutillas seleccionadas", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.btnBananas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "Bananas seleccionadas", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         binding.btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Completar el codigo necesario para reproducir el sonido "sound_long.mp3"
-//                mp.start();
+                MediaPlayer mp = MediaPlayer.create(getContext(), R.raw.sound_long);
+                mp.start();
             }
         });
 
         binding.btnShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Código para dar funcionamiento al spinner.
-                //Puede que el onClick no sea el mejor método para resolver.
+                String selected = sp_1.getSelectedItem().toString();
+                switch (selected) {
+                    case "Ricardo":
+                        Toast.makeText(getContext(), selected + ": Edad 26", Toast.LENGTH_SHORT).show();
+                        break;
+                    case "Ingrid":
+                        Toast.makeText(getContext(), selected + ": Edad 27", Toast.LENGTH_SHORT).show();
+                        break;
+                    case "Menthor":
+                        Toast.makeText(getContext(), selected + ": Edad 60", Toast.LENGTH_SHORT).show();
+                        break;
+                }
             }
         });
     }
@@ -77,13 +117,4 @@ public class FirstFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
-    /**
-     * Función para capturar la imagen seleccionada
-     * @param view
-     */
-    public void selected(View view) {
-//        Se recomendia generar una lógica de prgoramación para validar que fruta se selecciono y mostrar en un Toast el Nombre de la fruta seleccionada.
-    }
-
 }
